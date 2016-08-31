@@ -1,0 +1,142 @@
+<html>
+    <head>
+        <title> Calculadora by: JDCV</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+        var n1=0;
+        var n2=0;
+        var oper="";
+        var apunt=0;
+        var res=0;
+        var nada="";
+
+        function agregandonum(numero)
+        {
+            if(nada=="")
+            {
+                document.getElementById("pant").value=nada+numero;
+                nada=document.getElementById("pant").value;
+            }
+            else
+            {
+               
+                var num = document.getElementById("pant").value;
+                document.getElementById("pant").value=num+numero;
+            }
+
+            if(apunt==0)
+            {
+                n1=document.calculadora.pant.value;
+                alert("numero 1: " + n1);
+            }
+            else
+            {
+                n2=document.calculadora.pant.value;
+                alert("numero 1: " + n2);
+            }
+        }
+
+        function limpiarpant(elemento)
+        {
+            elemento.value="";
+            n1=0;
+            n2=0;
+            oper="";
+            apunt=0;
+            res=0;
+        }
+
+        function usandooperador(operador)
+        {
+            switch(operador)
+            {
+                case "+":
+                oper="+";
+                nada="";
+                apunt=1;
+                break;
+                case "-":
+                oper="-";
+                nada="";
+                apunt=1;
+                break;
+                case "*":
+                oper="*";
+                nada="";
+                apunt=1;
+                break;
+                case "/":
+                oper="/";
+                nada="";
+                apunt=1;
+                break;
+                case "%":
+                oper="%";
+                nada="";
+                apunt=1;
+                break;
+            }
+        }
+
+        function eltotal()
+        {
+            switch(oper)
+            {
+                case "+":
+                res=n1+n2;
+                alert(res);
+                n1=res;
+                break;
+                case "-":
+                res=n1-n2;
+                alert(res);
+                n1=res;
+                break;
+                case "*":
+                res=n1*n2;
+                alert(res);
+                n1=res;
+                break;
+                case "/":
+                res=n1/n2;
+                alert(res);
+                n1=res;
+                break;
+                case "%":
+                res=n1%n2;
+                alert(res);
+                n1=res;
+                break;
+            }
+        }
+
+        </script>
+        <form name="calculadora">
+            <input type="text" name="pantalla" value="" size="12" id="pant">
+            <br>
+            <input type="button" name="limpiar" value="C" onclick="limpiarpant(pant)">
+            <input type="button" name="+" value="+" onclick="usandooperador(+)">
+            <input type="button" name="-" value="-" onclick="usandooperador(-)">
+            <input type="button" name="*" value="*" onclick="usandooperador(*)">
+            <br>
+            <input type="button" name="1" value="1" onclick="agregandonum(1)">
+            <input type="button" name="2" value="2" onclick="agregandonum(2)">
+            <input type="button" name="3" value="3" onclick="agregandonum(3)">
+            <input type="button" name="/" value="/" onclick="usandooperador(/)">
+            <br>
+            <input type="button" name="4" value="4" onclick="agregandonum(4)">
+            <input type="button" name="5" value="5" onclick="agregandonum(5)">
+            <input type="button" name="6" value="6" onclick="agregandonum(6)">
+            <input type="button" name="%" value="%" onclick="usandooperador(%)">
+            <br>
+            <input type="button" name="7" value="7" onclick="agregandonum(7)">
+            <input type="button" name="8" value="8" onclick="agregandonum(8)">
+            <input type="button" name="9" value="9" onclick="agregandonum(9)">
+            <input type="button" name="0" value="0" onclick="agregandonum(0)">
+            <br>
+            <input type="button" name="total" value="=">
+        </form>
+    </body>
+</html>
