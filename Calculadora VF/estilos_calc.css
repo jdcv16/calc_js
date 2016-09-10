@@ -1,0 +1,91 @@
+    html{
+            background-color:#D8D8D8;
+        }
+        #cmd_calc{
+            width:100px;
+            height:30px;
+            background-color:silver;
+        }
+        #cmd_graf{
+            width:100px;
+            height:30px;
+            background-color:silver;
+        }
+        #span_calc{
+            float:left;
+            width:500px;
+            height:500px;
+            border: 1px solid #000000;
+        }
+        #span_graf{
+            float:left;
+            width:843px;
+            height:500px;
+            margin:20px,20px,20px,20px;
+          /*  border: 1px solid #000000;*/
+        }
+        #contenido{
+            width:1348px;
+            height:500px;
+            background-color:gray;
+        }
+        #form_graf{
+            float:left;
+            padding-left:20px;
+            width:321px;
+            height:500px;
+          /*  border: 1px solid #000000;*/
+        }
+        #eldibujo{
+            float:left;
+        }
+        input.boton{
+            width:42px;
+            height:42px;
+            border-radius: 10px 10px 10px 10px;
+        }
+        #botonigual{
+            width: 88px;
+            height: 42px;
+            border-radius: 10px 10px 10px 10px;
+        }
+        #pant{
+            font-size: 29px;
+            border-radius: 5px 5px 5px 5px;
+            padding-left: 10px;
+        }
+        #divpant{
+            margin-bottom: 20px;
+        }
+        #dentro_sc{
+            margin: 15px;
+            width: 470px;
+            height: 500px;
+        }
+        #cascaron_calc{
+            width: 226px;
+            float:left;
+            
+        }
+        #historial{
+            width: 225px;
+            padding-left: 15px;
+            float:left;
+        }
+        #X{
+            float:left;
+            width:40px;
+            padding:0;
+            border: 1px solid black;
+        }
+        #Y{
+            
+            float:left;
+            width:40px;
+            padding:0;
+            border: 1px solid black;
+        }
+        #agarramierda{
+            margin-top:20px;
+            padding:0;
+        }

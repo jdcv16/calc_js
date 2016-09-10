@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intefaz Calculadora y Gráfica</title>
+     <link rel="stylesheet" href="estilos_calc.css" type="text/css" media="all" />
+</head>
+<body>
+    <script type="text/javascript">
+        var c1=0;
+        var c2=0;
+        function vistac1(){
+            if(c1==0)
+            {
+                c1=1;
+                document.getElementById("span_calc").style.display="block";
+            }
+            else
+            {
+                c1=0;
+                document.getElementById("span_calc").style.display="none";
+            }
+        }
+        function vistac2(){
+            if(c2==0)
+            {
+                c2=1;
+                document.getElementById("span_graf").style.display="block";
+            }
+            else
+            {
+                c2=0;
+                document.getElementById("span_graf").style.display="none";
+            }
+        }
+        // Con lo siguiente vamos a leer la tecla que presionemos
+        function onTecla(e){	
+            var latecla = e?e.keyCode:event.keyCode;
+		   //alert('valor ascii: ' + latecla);
+            switch(latecla)
+            {
+                case 8:
+                var unsimbolo="←";
+                encendertecla(unsimbolo);
+                var quitarletra=document.getElementById("pant").value;
+                quitarletra=quitarletra.substring(0,quitarletra.length-1);
+                document.getElementById("pant").value=quitarletra;
+                break;
+                case 67:
+                var unsimbolo="C";
+                encendertecla(unsimbolo);
+                document.getElementById("pant").value="";
+                break;
+            }
+	    }
+	    document.onkeydown = onTecla;
+        
+        //funcion para encender la tecla en pantalla
+        function encendertecla(elsimbolo){
+            setInterval(function(){document.getElementById(elsimbolo).style.backgroundColor="";},1000,"JavaScript");
+            setTimeout(function(){document.getElementById(elsimbolo).style.backgroundColor="red";},0,"JavaScript");
+        }
+
+        function escribirenpantalla(elboton)
+        {
+            var nos = elboton;
+            if(nos != "C" && nos != "←" && nos != "M" && nos != "=")
+            {
+                var lodelapant=document.getElementById("pant").value
+                document.getElementById("pant").value=lodelapant+nos;
+            }
+            
+        }
+
+        //funcion para sacar resultado
+        function resolver()
+        {
+            var problema = document.getElementById("pant").value;
+            var resuelto = false;
+            while(resuelto==false)
+            {
+                var parentesis = false;
+                var x = 0;
+                for(x=0;x<=problema.length-1;x++)
+                {
+                    if(problema[x]==")"||problema[x]=="(")
+                    {
+                        parentesis = true;
+                    }
+                }
+                if(parentesis==true)
+                {
+                    var primerparentesis = 0;
+                    var ultimoparentesis = 0;
+                    var l = 0;
+                    for(l=0;l<=problema.length-1;l++)
+                    {
+                        if(problema[l]=="(")
+                        {
+                            primerparentesis = l;
+                            alert(l);
+                        }
+                    }
+                    var m = 0;
+                    for(m=problema.length-1;m>=0;m--)
+                    {
+                        if(problema[m]==")"&&m>primerparentesis)
+                        {
+                            ultimoparentesis = m;
+                            alert(m);
+                        }
+                    }
+                    var parteparentesis = problema.substring(primerparentesis,ultimoparentesis+1);
+                    alert(parteparentesis);
+                    var loqueseobtuvo=resolverconparentesis(parteparentesis);
+                    problema=problema.replace(parteparentesis,loqueseobtuvo);
+                    alert(problema);
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+        function resolvernormal(operacion)
+        {
+            var i = 0;
+            var suma = false, resta = false, multip = false, division = false;
+            var possuma = 0, posresta = 0, posmultip = 0, posdivision = 0, ini_oper = 0, fin_oper = 0;
+            for(i=0;i<=lacadena.length-1;i++)
+            {
+                switch(lacadena[i])
+                {
+                    case "*":
+                    multip = true;
+                    posmultip = i;
+                    break;
+                    case "/":
+                    division = true;
+                    posdivision = i;
+                    break;
+                    case "+":
+                    suma = true;
+                    possuma = i;
+                    break;
+                    case "-":
+                    resta = true;
+                    posresta = i;
+                    break;
+                }
+            }
+            if(multip==true)
+            {
+               
+                var a = 0, b = 0;
+                for(a=posmultip-1;a>=0;a--)
+                {
+                }
+                for(b=posmultip+1;b<=lacadena.length-1;b++)
+                {
+
+                }
+            }
+            else if (division==true)
+            {
+
+            }
+            else if (suma==true)
+            {
+
+            }
+            else if (resta==true)
+            {
+                
+            }
+        }
+
+        function resolverconparentesis(operacion)
+        {
+            var lacadena=operacion.substring(1,operacion.length-1);
+            alert(lacadena);
+            var lacadenaresuelta=resolvernormal(lacadena);
+            return lacadenaresuelta;
+        }
+        
+    </script>
+    <div>
+        <input type="button" id="cmd_calc" value="Calculadora" onclick="vistac1()">
+        <input type="button" id="cmd_graf" value="Gráfica" onclick="vistac2()">
+    </div>
+    <div id="contenido">
+        <span id="span_calc" style="display:none;">
+            <div id="dentro_sc">
+                <div id="cascaron_calc">
+                    <form name="calculadora">
+                        <div id="divpant">
+                            <input type="text" name="pantalla" value="" size="12" id="pant">
+                        </div>
+                        <div>
+                            <input type="button" class="boton" id="C" value="C" onclick="">
+                            <input type="button" class="boton" id="←" value="←" onclick="">
+                            <input type="button" class="boton" id="M" value="M" onclick="">
+                            <input type="button" class="boton" id="(" value="(" onclick="escribirenpantalla('(')">
+                            <input type="button" class="boton" id=")" value=")" onclick="escribirenpantalla(')')">
+                        </div>
+                        <div>
+                            <input type="button" class="boton" id="7" value="7" onclick="escribirenpantalla('7')">
+                            <input type="button" class="boton" id="8" value="8" onclick="escribirenpantalla('8')">
+                            <input type="button" class="boton" id="9" value="9" onclick="escribirenpantalla('9')">
+                            <input type="button" class="boton" id="+" value="+" onclick="escribirenpantalla('+')">
+                            <input type="button" class="boton" id="sen" value="sen" onclick="escribirenpantalla('sen')">
+                        </div>
+                        <div>
+                            <input type="button" class="boton" id="4" value="4" onclick="escribirenpantalla('4')">
+                            <input type="button" class="boton" id="5" value="5" onclick="escribirenpantalla('5')">
+                            <input type="button" class="boton" id="6" value="6" onclick="escribirenpantalla('6')">
+                            <input type="button" class="boton" id="-" value="-" onclick="escribirenpantalla('-')">
+                            <input type="button" class="boton" id="cos" value="cos" onclick="escribirenpantalla('cos')">
+                        </div>
+                        <div>
+                            <input type="button" class="boton" id="1" value="1" onclick="escribirenpantalla('1')">
+                            <input type="button" class="boton" id="2" value="2" onclick="escribirenpantalla('2')">
+                            <input type="button" class="boton" id="3" value="3" onclick="escribirenpantalla('3')">
+                            <input type="button" class="boton" id="*" value="*" onclick="escribirenpantalla('*')">
+                            <input type="button" class="boton" id="tan" value="tan" onclick="escribirenpantalla('tan')">
+                        </div>
+                        <div>
+                            <input type="button" id="botonigual" id="=" value="=" onclick="resolver()">
+                            <input type="button" class="boton" id="0" value="0" onclick="escribirenpantalla('0')">
+                            <input type="button" class="boton" id="/" value="/" onclick="escribirenpantalla('/')">
+                            <input type="button" class="boton" id="%" value="%" onclick="escribirenpantalla('%')"> 
+                        </div> 
+                    </form>
+                </div>
+                <div id="historial">
+                    <h4 style="margin-top:0;text-align:center;">Historial de Operaciones</h4>
+                </div>
+                </div>
+        </span>
+        <span id="span_graf" style="display:none;">
+            <div>       
+                <span id="form_graf">
+                    <h3>Gráfica</h3>
+                    <label for="txt_funcion">F(y)</label>
+                    <input type="text" name="txt_funcion" id="txt_funcion" placeholder="Ingresa una funcion:">
+                    <br>
+                    <label for="txt_x1">_X1</label>
+                    <input type="text" name="txt_x1" id="txt_x1" placeholder="Ingresa el valor de x1">
+                    <br>
+                    <label for="txt_x2">_X2</label>
+                    <input type="text" name="txt_x2" id="txt_x2" placeholder="Ingresa el valor de x2">
+                    <br>
+                    <input type="button" value="GRAFICAR" style="width:180px;" onclick="graficarecuacion()">
+                    <div id="agarramierda">
+                        <div id="X"><center>X</center></div>
+                        <div id="Y"><center>Y</center></div>
+                        </div>
+                </span>
+                <span id="eldibujo">
+                    <canvas width="500" height="500" style="border: 1px solid #000000; background-color:white;">
+                    <script>
+                        var lienzo=document.querySelector("canvas");
+                        var lineas=lienzo.getContext("2d");
+                        lineas.moveTo(250,10);
+                        lineas.lineTo(250,490);
+                        lineas.lineWidth=2;
+                        lineas.strokeStyle="black";
+                        lineas.stroke();
+                        lineas.moveTo(10,250);
+                        lineas.lineTo(490,250);
+                        lineas.lindeWidth=2;
+                        lineas.strokeStyle="black";
+                        lineas.stroke();
+                        var i=1;
+                        for(i=1;i<=48;i++)
+                        {
+                            lineas.moveTo(10*i,245);
+                            lineas.lineTo(10*i,255);
+                            lineas.lineWidth=2;
+                            lineas.strokeStyle="black";
+                            lineas.stroke();
+                        }
+                        var i=0;
+                        for(i=1;i<=48;i++)
+                        {
+                            lineas.moveTo(245,i*10);
+                            lineas.lineTo(255,10*i);
+                            lineas.lineWidth=2;
+                            lineas.strokeStyle="black";
+
+                            lineas.stroke();
+                        }
+                    </script>
+                    <script type="text/javascript">
+
+                        //para graficar ecuación
+
+                        function graficarecuacion()
+                        {   
+                                var ecuacion=document.getElementById("txt_funcion").value;
+                                var lax1=Number(document.getElementById("txt_x1").value);
+                                var lax2=Number(document.getElementById("txt_x2").value);
+                                var difer=lax2-lax1;
+
+                                if(lax1<=0 && lax2>0 || lax2<=0 && LAX)
+                                {
+                                    difer=difer+1;
+                                }
+                                var n=0;
+                                var enx = [];
+                                var eny = [];
+                                for(n=lax1; n<=lax2; n++)
+                                {
+                                    if(ecuacion.indexOf('x^2'!=-1))
+                                    {
+                                        ecuacion=ecuacion.replace("x^2","(x*x)")
+                                    }
+                                    var ecuacionsustituida=ecuacion.replace(/x/gi,(n));
+
+                                    //alert(ecuacionsustituida);
+                                    var enlay=eval(ecuacionsustituida);
+                                    //alert(enlay);
+                                    enx.push(n);
+                                    eny.push(enlay);
+                                }
+
+                                var paragraficar = document.querySelector("canvas");
+                                var laslineas = paragraficar.getContext("2d");
+                                laslineas.beginPath();
+                                var m = 0;
+                                for(m=0;m<=difer-1;m++)
+                                {
+                                    if(m==difer-1)
+                                    {
+                                        document.getElementById("X").innerHTML += "<br>" + enx[m];
+                                        document.getElementById("Y").innerHTML += "<br>" + eny[m];
+                                    }
+                                    else
+                                    {
+                                        laslineas.moveTo(250+(enx[m]*10),250+(eny[m]*10));
+                                        //laslineas.lineTo(250+(x2*10),250+(y2*10));
+                                        laslineas.lineTo(250+(enx[m+1]*10),250+(eny[m+1]*10));
+                                        laslineas.lineWidth = 2;
+                                        laslineas.strokeStyle = 'blue';
+                                        laslineas.stroke();
+                                        document.getElementById("X").innerHTML += "<br>" + enx[m];
+                                        document.getElementById("Y").innerHTML += "<br>" + eny[m];
+                                    }
+                                }
+                        }
+                        
+                    </script>
+                </span>
+            </div>
+        </span>
+    </div>  
+</body>
+</html>
